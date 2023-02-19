@@ -69,7 +69,7 @@ void main()
     while(1)
     {
         printf("Enter the choice:\n");
-        printf("1.Insert Front, 2.Insert Rear, 3.Delete Front, 4.Delete Rear, 5.Display, 6.Exit\n");
+        printf("1.Insert Front   2.Insert Rear   3.Delete Front   4.Delete Rear   5.Display   6.Exit\n");
         scanf("%d",&ch);
         switch(ch)
         {
