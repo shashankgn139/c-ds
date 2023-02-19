@@ -51,7 +51,7 @@ void main()
     int ct=0, a[MAX], f=0, r=-1,ch;
     while(1) {
         printf("Enter the choice\n");
-        printf("1.Insert, 2.Delete, 3.Display, 4.Exit\n");
+        printf("1.Insert   2.Delete   3.Display   4.Exit\n");
         scanf("%d", &ch);
         switch (ch)
         {

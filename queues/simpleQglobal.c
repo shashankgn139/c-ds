@@ -47,7 +47,7 @@ void main()
     while(1)
     {
         printf("Enter your choice:\n");
-        printf("1.Insert, 2.Delete, 3.Display, 4.Exit\n");
+        printf("1.Insert   2.Delete   3.Display   4.Exit\n");
         scanf("%d",&ch);
         switch(ch)
         {
