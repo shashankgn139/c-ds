@@ -113,7 +113,7 @@ void main()
     int ch;
     while(1)
     {
-        printf("1.InsertFront, 2.InsertRear, 3.DeleteFront, 4.DeleteRear, 5.Display\n");
+        printf("1.InsertFront   2.InsertRear   3.DeleteFront  4.DeleteRear   5.Display\n");
         scanf("%d",&ch);
         switch(ch)
         {
