@@ -1,10 +1,10 @@
 /*basic binary tree functions
  * - inserting node
  * */
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-//#include<ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+// #include<ctype.h>
 
 struct BT
 {
@@ -18,8 +18,8 @@ typedef struct BT node;
  * */
 char toUpper(char ch)
 {
-        if(ch>'a'&&ch<'z')
-                return(ch-32);
+        if (ch > 'a' && ch < 'z')
+                return (ch - 32);
         else
                 return ch;
 }
@@ -28,16 +28,18 @@ char toUpper(char ch)
  * given by user
  * parameters - root node pointer
  * */
-node* insertNode(node* root){
-        node* n_node=malloc(sizeof(node));
-        node *cur=root, *prev;
+node *insertNode(node *root)
+{
+        node *n_node = malloc(sizeof(node));
+        node *cur = root, *prev;
         char d[50];
 
-        n_node->lptr=n_node->rptr=NULL;
+        n_node->lptr = n_node->rptr = NULL;
 
         printf("\nData : ");
         scanf("%d", &(n_node->data));
-        if(root==NULL){
+        if (root == NULL)
+        {
                 printf("-first node\n");
                 return n_node;
         }
@@ -46,49 +48,52 @@ node* insertNode(node* root){
         scanf("%s", d);
 
         int i;
-        for(int i=0;i<strlen(d)&&cur;i++){
-                prev=cur;
-                if(toUpper(d[i])=='L')
-                        cur=cur->lptr;
+        for (int i = 0; i < strlen(d) && cur; i++)
+        {
+                prev = cur;
+                if (toUpper(d[i]) == 'L')
+                        cur = cur->lptr;
                 else
-                        cur=cur->rptr;
+                        cur = cur->rptr;
         }
 
-        if(strlen(d)&&cur){
+        if (strlen(d) && cur)
+        {
                 printf("\n-insertion not possible!\n");
                 free(n_node);
                 return root;
         }
 
-        if(toUpper(d[i])=='L')
-                prev->lptr=n_node;
+        if (toUpper(d[i]) == 'L')
+                prev->lptr = n_node;
         else
-                prev->rptr=n_node;
+                prev->rptr = n_node;
         return root;
 }
 
 /*displaying in INORDER
  * paramaters - address of root node
  * */
-void displayInorder(node* root)
+void displayInorder(node *root)
 {
-        if(root)
+        if (root)
         {
                 displayInorder(root->lptr);
-                printf("%d ",root->data);
+                printf("%d ", root->data);
                 displayInorder(root->rptr);
         }
 }
 
 void main()
 {
-        node* root=NULL;
+        node *root = NULL;
         int n;
 
         printf("\nEnter the number of nodes : ");
-        scanf("%d",&n);
-        while(n--){
-                root=insertNode(root);
+        scanf("%d", &n);
+        while (n--)
+        {
+                root = insertNode(root);
                 displayInorder(root);
                 printf("\n");
         }

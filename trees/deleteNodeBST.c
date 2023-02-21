@@ -1,25 +1,29 @@
-#include<stdio.h>
-#include<stdlib.h>
-struct BST{
-    int data;
-    struct BST *lptr,*rptr;
+#include <stdio.h>
+#include <stdlib.h>
+struct BST
+{
+        int data;
+        struct BST *lptr, *rptr;
 };
 typedef struct BST node;
 
-node* root=NULL;
+node *root = NULL;
 /*insertion of a node in Binary Search Tree
  * paramaters - interger data
  * */
-void insertNode(int info) {
+void insertNode(int info)
+{
         node *cur = root, *prev = NULL;
-        node *n_node = (node *) malloc(sizeof(node));
+        node *n_node = (node *)malloc(sizeof(node));
         n_node->data = info;
         n_node->lptr = n_node->rptr = NULL;
-        if (root == NULL) {
+        if (root == NULL)
+        {
                 root = n_node;
                 return;
         }
-        while (cur != NULL) {
+        while (cur != NULL)
+        {
                 prev = cur;
                 if (n_node->data < cur->data)
                         cur = cur->lptr;
@@ -34,7 +38,8 @@ void insertNode(int info) {
 
 /*finds inorder successor of a given tree
  * parameters - root node pointer*/
-node *minValueNode(node *no) {
+node *minValueNode(node *no)
+{
         node *current = no;
         while (current->lptr != NULL)
                 current = current->lptr;
@@ -44,20 +49,24 @@ node *minValueNode(node *no) {
 /*deletes node in a Binary Search Tree
  * parameters - root node pointer, integer key to be deleted
  * */
-node *deleteNode(node *subRoot, int key) {
+node *deleteNode(node *subRoot, int key)
+{
         if (subRoot == NULL)
                 return subRoot;
         if (key < subRoot->data)
                 subRoot->lptr = deleteNode(subRoot->lptr, key);
         else if (key > subRoot->data)
                 subRoot->rptr = deleteNode(subRoot->rptr, key);
-        else {
-                if (subRoot->lptr == NULL) {
+        else
+        {
+                if (subRoot->lptr == NULL)
+                {
                         node *temp = subRoot->rptr;
                         free(subRoot);
                         return temp;
                 }
-                else if (subRoot->rptr == NULL) {
+                else if (subRoot->rptr == NULL)
+                {
                         node *temp = subRoot->lptr;
                         free(subRoot);
                         return temp;
@@ -69,35 +78,37 @@ node *deleteNode(node *subRoot, int key) {
         return subRoot;
 }
 
-
 /*inorder dispaly funciton
  * parameters - root node of any binary tree
  * */
-void displayInorder(node* subRoot)
+void displayInorder(node *subRoot)
 {
-        if(subRoot!=NULL)
+        if (subRoot != NULL)
         {
                 displayInorder(subRoot->lptr);
-                printf("%d ",subRoot->data);
+                printf("%d ", subRoot->data);
                 displayInorder(subRoot->rptr);
         }
 }
 
-int main() {
+int main()
+{
         int key;
         int a[] = {40, 20, 50, 10, 30, 45, 47};
-        for (int i = 0; i <7; i++)
+        for (int i = 0; i < 7; i++)
                 insertNode(a[i]);
         displayInorder(root);
-        while (1) {
+        while (1)
+        {
                 printf("\nEnter the element to be deleted: ");
                 scanf("%d", &key);
 
-                root= deleteNode(root, key);
+                root = deleteNode(root, key);
 
                 if (root == NULL)
                         printf("\nelement not found");
-                else {
+                else
+                {
                         printf("\nelement deleted succefully: ");
                         displayInorder(root);
                 }

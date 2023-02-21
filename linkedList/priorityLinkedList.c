@@ -58,7 +58,7 @@ void displayList(node *start)
 int main()
 {
 	node *start = NULL;
-	int a[] = {2,78, 98, 83, 67, 53, 77, 2};
+	int a[] = {2, 78, 98, 83, 67, 53, 77, 2};
 	for (int i = 0; i < sizeof(a) / sizeof(a[0]); i++)
 	{
 		node *nNode = malloc(sizeof(node));

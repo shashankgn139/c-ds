@@ -2,8 +2,8 @@
 #include <stdlib.h>
 struct BST
 {
-    int info;
-    struct BST *lptr, *rptr;
+        int info;
+        struct BST *lptr, *rptr;
 };
 typedef struct BST node;
 
@@ -36,7 +36,7 @@ node *generateTree(node *root, int data)
 
 void inorderDisplay(node *root)
 {
-        if (root!=NULL)
+        if (root != NULL)
         {
                 inorderDisplay(root->lptr);
                 printf("%d  ", root->info);
@@ -46,70 +46,68 @@ void inorderDisplay(node *root)
 
 node *delete(node *root, int key)
 {
-        //1. locate node to be deleted
-        node* deleteNode = root, *prevtoDelete=root;
-        while(deleteNode)
+        // 1. locate node to be deleted
+        node *deleteNode = root, *prevtoDelete = root;
+        while (deleteNode)
         {
-                if(deleteNode->info==key)
+                if (deleteNode->info == key)
                         break;
-                prevtoDelete=deleteNode;
-                if(key>deleteNode->info)
-                        deleteNode=deleteNode->rptr;
+                prevtoDelete = deleteNode;
+                if (key > deleteNode->info)
+                        deleteNode = deleteNode->rptr;
                 else
-                        deleteNode=deleteNode->lptr;
+                        deleteNode = deleteNode->lptr;
         }
-        NUKE: //label.
+NUKE: // label.
         if (!deleteNode)
         {
                 printf("Key element not found\n");
                 return root;
         }
 
-
-        //root partial leaf
-        node* temp;
-        if(root->info==key)
+        // root partial leaf
+        node *temp;
+        if (root->info == key)
         {
-                if(!root->rptr)
-                        temp=root->lptr;
+                if (!root->rptr)
+                        temp = root->lptr;
                 else
-                        temp=root->rptr;
+                        temp = root->rptr;
                 free(root);
                 return temp;
         }
 
-
-        //if (partial) leaf
-        if(!deleteNode->rptr)//if(deleteNode->rptr==NULL)//only left sub tree exists
+        // if (partial) leaf
+        if (!deleteNode->rptr) // if(deleteNode->rptr==NULL)//only left sub tree exists
         {
-                node *childBackup= deleteNode->lptr;
-                if(prevtoDelete->rptr==deleteNode)
-                        prevtoDelete->rptr=childBackup;
+                node *childBackup = deleteNode->lptr;
+                if (prevtoDelete->rptr == deleteNode)
+                        prevtoDelete->rptr = childBackup;
                 else
-                        prevtoDelete->lptr=childBackup;
+                        prevtoDelete->lptr = childBackup;
                 free(deleteNode);
                 return root;
         }
-        if(!deleteNode->lptr)//if(deleteNode->lptr==NULL)
+        if (!deleteNode->lptr) // if(deleteNode->lptr==NULL)
         {
-                node *childBackup= deleteNode->rptr;
-                if(prevtoDelete->rptr==deleteNode)
-                        prevtoDelete->rptr=childBackup;
+                node *childBackup = deleteNode->rptr;
+                if (prevtoDelete->rptr == deleteNode)
+                        prevtoDelete->rptr = childBackup;
                 else
-                        prevtoDelete->lptr=childBackup;
+                        prevtoDelete->lptr = childBackup;
                 free(deleteNode);
                 return root;
         }
-        //general case. IOS stands for Inorder Successor
-        node* IOS;
-        IOS=deleteNode->rptr;
+        // general case. IOS stands for Inorder Successor
+        node *IOS;
+        IOS = deleteNode->rptr;
         while (IOS->lptr)
         {
-                prevtoDelete=IOS;
+                prevtoDelete = IOS;
                 IOS = IOS->lptr;
         }
-        deleteNode->info=IOS->info;
-        deleteNode=IOS;
+        deleteNode->info = IOS->info;
+        deleteNode = IOS;
         goto NUKE;
 }
 
@@ -117,11 +115,11 @@ void main()
 {
         node *root = NULL;
         int data[] = {40, 20, 50, 10, 30, 45, 47};
-        for (int i = 0; i < (sizeof(data)/sizeof(int)); i++)
+        for (int i = 0; i < (sizeof(data) / sizeof(int)); i++)
                 root = generateTree(root, data[i]);
         inorderDisplay(root);
         printf("\n");
-        for(;;)
+        for (;;)
         {
                 printf("Enter ele to be deleted:  ");
                 int key;
