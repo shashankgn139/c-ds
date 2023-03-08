@@ -69,7 +69,7 @@ void levelorderTraversal(node *rootL)
 void main()
 {
         node *root = NULL;
-        int a[] = {1, 2, 3, 4, 5, 6, 7};
+        int a[] = {1, 2, 3, 4};
         int n = sizeof(a) / sizeof(a[0]);
         root = lvlotree(root, a, n);
         printf("Expected output:\n");
